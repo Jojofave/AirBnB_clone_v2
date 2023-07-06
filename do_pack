@@ -1,0 +1,20 @@
+from fabric.api import local
+from datetime import datetime
+
+
+def do_pack():
+    """
+    Generates a compressed archive file of the web_static folder.
+    The archive file will be stored in the versions directory.
+    Returns the path to the created archive file, or None if the archiving process fails.
+    """
+    try:
+        now = datetime.now().strftime("%Y%m%d%H%M%S")
+        archive_path = "versions/web_static_{}.tgz".format(now)
+        local("mkdir -p versions")
+        local("tar -czvf {} web_static".format(archive_path))
+        return archive_path
+    except Exception as e:
+        print("Archive creation failed: {}".format(e))
+        return None
+
