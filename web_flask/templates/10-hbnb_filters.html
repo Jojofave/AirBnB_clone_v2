@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/3-footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css') }}">
+    <title>HBNB</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">HBNB</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/hbnb">HBNB</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Places</h1>
+                <div class="places">
+                    <h3 class="title">States</h3>
+                    <div class="filter state">
+                        <div class="popover">
+                            {% for state in states %}
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="check" data-name="state" data-id="{{ state.id }}">
+                                        {{ state.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <h3 class="title">Cities</h3>
+                    <div class="filter city">
+                        <div class="popover">
+                            {% for city in cities %}
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="check" data-name="city" data-id="{{ city.id }}">
+                                        {{ city.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <h3 class="title">Amenities</h3>
+                    <div class="filter amenity">
+                        <div class="popover">
+                            {% for amenity in amenities %}
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="check" data-name="amenity" data-id="{{ amenity.id }}">
+                                        {{ amenity.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; HBNB 2023. All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/6-filters.js') }}"></script>
+</body>
+</html>
+
